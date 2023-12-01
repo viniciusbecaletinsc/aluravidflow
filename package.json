@@ -1,0 +1,24 @@
+{
+  "name": "aluravidflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "json-server --watch backend/videos.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciusbecaletinsc/aluravidflow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viniciusbecaletinsc/aluravidflow/issues"
+  },
+  "homepage": "https://github.com/viniciusbecaletinsc/aluravidflow#readme"
+}
