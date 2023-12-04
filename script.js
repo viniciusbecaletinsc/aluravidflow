@@ -1,6 +1,14 @@
-async function getVideos(query) {
+async function getVideos(query, categoria) {
+  let url
+
+  if (categoria) {
+    url = `http://localhost:3000/videos?q=${query}&categoria=${categoria}`
+  } else {
+    url = `http://localhost:3000/videos?q=${query}`
+  }
+
   try {
-    const response = await fetch(`http://localhost:3000/videos?q=${query}`)
+    const response = await fetch(url)
     const videos = await response.json()
     return {
       success: true,
@@ -14,8 +22,8 @@ async function getVideos(query) {
   }
 }
 
-async function showVideos(query = "") {
-  const videos = await getVideos(query)
+async function showVideos({ query = "", categoria = null }) {
+  const videos = await getVideos(query, categoria)
   const containerVideos = document.querySelector('.videos__container')
 
   if (!videos.success) {
@@ -40,7 +48,10 @@ async function showVideos(query = "") {
   }
 }
 
-showVideos()
+showVideos({
+  query: "",
+  categoria: null
+})
 
 const barraPesquisa = document.querySelector(".pesquisar__input")
 
@@ -51,8 +62,32 @@ function handleFiltrarVideos() {
   
   delay = setTimeout(() => {
     const query = barraPesquisa.value
-    showVideos(query)
+    showVideos({
+      query
+    })
   }, 500)
 }
 
 barraPesquisa.addEventListener("input", handleFiltrarVideos)
+
+const categorias = document.querySelectorAll(".superior__item")
+
+function handleFiltrarVideosPorCategoria(categoria) {
+  barraPesquisa.value = ""
+
+  if (categoria.name === "Tudo") {
+    showVideos({
+      query:"",
+      categoria: null
+    })
+    return
+  }
+
+  showVideos({
+    categoria: categoria.name
+  })
+}
+
+for (const categoria of categorias) {
+  categoria.addEventListener("click", () => handleFiltrarVideosPorCategoria(categoria))
+}
