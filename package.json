@@ -1,6 +1,6 @@
 {
   "name": "aluravidflow",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "script.js",
   "dependencies": {
@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "json-server --watch backend/videos.json"
+    "server": "json-server --watch backend/videos.json"
   },
   "repository": {
     "type": "git",
